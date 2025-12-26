@@ -16,16 +16,18 @@ const router = express.Router();
 
 // Public routes
 router.get('/', getExpos);
-router.get('/:id', getExpoById);
+router.get('/:id', getExpoById); // single expo
 
-// Protected routes
+// Protected routes (owner only)
 router.use(auth);
-router.get('/my', getMyExpos);
+
+// Owner expos
+router.get('/my', getMyExpos);  // Must come BEFORE '/:id'
 router.post('/', createExpo);
 router.put('/:id', updateExpo);
 router.delete('/:id', deleteExpo);
 
-// Booth management
+// Booth management (owner only)
 router.post('/:id/booths', addBooth);
 router.put('/:id/booths/:boothId', updateBooth);
 router.delete('/:id/booths/:boothId', deleteBooth);

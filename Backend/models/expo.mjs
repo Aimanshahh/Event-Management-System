@@ -13,7 +13,11 @@ const boothSchema = new mongoose.Schema({
     enum: ['available', 'reserved', 'occupied', 'maintenance'],
     default: 'available'
   },
-  exhibitor: String
+  exhibitor: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: 'Exhibitor'
+}
+
 }, { _id: true });
 
 const expoSchema = new mongoose.Schema({

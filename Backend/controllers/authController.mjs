@@ -2,10 +2,9 @@ import User from "../models/User.mjs";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-// Signup function
 export const signup = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role } = req.body; // <-- add this
 
     // Check if the email already exists
     let user = await User.findOne({ email });
@@ -39,6 +38,7 @@ export const signup = async (req, res) => {
     res.status(500).json({ msg: err.message });
   }
 };
+
 
 // Login function
 export const login = async (req, res) => {
